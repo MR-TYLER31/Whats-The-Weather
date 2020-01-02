@@ -73,10 +73,11 @@ $(document).ready(function() {
             console.log(data)
 
             // Empties out current cards on page load
-            $('.days').empty()
+            $('.card-deck').empty()
             
             // Loops througn 5 day forecast 
             for(var i = 0; i < data.list.length; i+= 8) {
+                
                 // console.log(data.list[i].weather[0].icon)
                 console.log(data.list[i].main.temp)
 
@@ -123,10 +124,12 @@ $(document).ready(function() {
         var city = $('#search-city').val().trim()
         console.log(city)
         
+        // create url for current weather
         var newUrl = queryUrlBase + city + "&units=imperial" + authKey;
 
         var dayCount = "&cnt=40"
 
+        // variable for 5 day forecast url
         var queryUrlForecast = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + "&units=imperial" + dayCount + authKey;
 
         
@@ -134,6 +137,7 @@ $(document).ready(function() {
         // Sends the ajax call the newly assembled url for the current forecast
         currentWeather(newUrl);
 
+        // Sends ajax call the newly assemeled url for the 5 day forecast
         futureWeather(queryUrlForecast)
    
     });
