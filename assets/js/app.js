@@ -64,6 +64,7 @@ $(document).ready(function() {
     }
 
 
+    // function for ajax call to display 5 day forecast
     function futureWeather(queryUrlForecast) {
         $.ajax({
             url: queryUrlForecast,
@@ -71,12 +72,15 @@ $(document).ready(function() {
         }).then(function(data) {
             console.log(data)
 
+            // Empties out current cards on page load
             $('.days').empty()
             
+            // Loops througn 5 day forecast 
             for(var i = 0; i < data.list.length; i+= 8) {
                 // console.log(data.list[i].weather[0].icon)
                 console.log(data.list[i].main.temp)
 
+                // Creates card for each of the 5 days
                 var card = $('<div>');
                 card.addClass('card');
                 $('.card-deck').append(card)
@@ -85,18 +89,27 @@ $(document).ready(function() {
                 card.append(cardBody);
                
 
+                // Create p tag to display date of each day
                 var forecastDate = $('<p>');
-               forecastDate.html(data.list[i].dt_txt)
+               forecastDate.html(`${moment(data.list[i].dt_txt).format('L')}`)
                cardBody.append(forecastDate)
 
+             
 
+                // Create p tag to display temperature for each day
                var forecastTemp = $('<p>');
                forecastTemp.html(`Temp: ${data.list[i].main.temp} &#176;F`)
                forecastDate.append(forecastTemp)
 
+               // Create p tag to display the humidity for each day
                var forecastHumid = $('<p>');
                forecastHumid.html(`Humidity: ${data.list[i].main.humidity} % `);
                forecastTemp.append(forecastHumid);
+
+               // Create a img tag to display a icon for weather for each day
+               var forecastIcon = $(`<img src="http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" alt="icon">`);
+               //    forecastDate.attr(`src`, data.list[i].weather[0].icon)
+                  forecastTemp.append(forecastIcon)
                 
             }
 
@@ -116,7 +129,6 @@ $(document).ready(function() {
 
         var queryUrlForecast = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + "&units=imperial" + dayCount + authKey;
 
-        // var numDays = 1;
         
 
         // Sends the ajax call the newly assembled url for the current forecast
