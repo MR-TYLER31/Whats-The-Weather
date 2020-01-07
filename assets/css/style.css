@@ -1,0 +1,23 @@
+body {
+    background:url('/assets/img/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+    position: relative;
+}
+
+#header {
+    background-color: #f5f3f2;
+    color: black;
+}
+
+.days {
+    background-color: #4287f5;
+    color: white;
+}
+
+
+/* .forecast-date {
+    font-size: 15px;
+} */
+
