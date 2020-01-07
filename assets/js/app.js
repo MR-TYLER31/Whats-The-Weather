@@ -2,7 +2,7 @@
 var authKey = "&appid=51c656b1b08b010750af1658413f8a67"
 
 // URL Base
-var queryUrlBase = 'http://api.openweathermap.org/data/2.5/weather?q='
+var queryUrlBase = 'https://api.openweathermap.org/data/2.5/weather?q='
 
 var listSection = $('.list-group');
 var city = $('#search-city')
@@ -121,7 +121,7 @@ $(document).ready(function() {
         console.log(response.wind.speed)
 
           //UV Index API call and appending functionality
-          var queryURLuv = `http://api.openweathermap.org/data/2.5/uvi/forecast?${authKey}&lat=${response.coord.lat}&lon=${response.coord.lon}&cnt=1`
+          var queryURLuv = `https://api.openweathermap.org/data/2.5/uvi/forecast?${authKey}&lat=${response.coord.lat}&lon=${response.coord.lon}&cnt=1`
           $.ajax({
               url: queryURLuv,
               method: "GET"
@@ -167,7 +167,7 @@ $(document).ready(function() {
         var dayCount = "&cnt=40"
 
         // variable for 5 day forecast url
-        var queryUrlForecast = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + "&units=imperial" + dayCount + authKey;   
+        var queryUrlForecast = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + "&units=imperial" + dayCount + authKey;   
         $.ajax({
             url: queryUrlForecast,
             method: "GET"
@@ -221,7 +221,7 @@ $(document).ready(function() {
            forecastTemp.append(forecastHumid);
 
            // Create a img tag to display a icon for weather for each day
-           var forecastIcon = $(`<img src="http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" alt="icon">`);
+           var forecastIcon = $(`<img src="https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" alt="icon">`);
            forecastTemp.append(forecastIcon)
             
         }
